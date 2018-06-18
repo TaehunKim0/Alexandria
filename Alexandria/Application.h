@@ -32,5 +32,26 @@ private:
 
 private:
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
+
+public:
+	inline int GetWindowWidth() {
+		return m_iWindowWidth;
+	}
+	inline int GetWindowHeight() {
+		return m_iWindowHeight;
+	}
+	inline float GetDeltaTime() {
+		return m_fDeltaTime;
+	}
+	inline HWND GetHandle() {
+		return m_hWnd;
+	}
+	inline wchar_t* GetTile() {
+		return m_Title;
+	}
+	inline bool GetWindowed() {
+		return m_bWindowed;
+	}
+
 };
 

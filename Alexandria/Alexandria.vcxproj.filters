@@ -6,11 +6,17 @@
       <Filter>FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Renderer.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Gate.cpp" />
     <ClCompile Include="Application.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
       <Filter>FrameWork</Filter>
     </ClCompile>
   </ItemGroup>

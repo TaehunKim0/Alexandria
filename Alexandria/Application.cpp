@@ -44,20 +44,68 @@ bool Application::Release()
 
 bool Application::Run()
 {
-	return false;
+	MSG msg = {};
+	while (msg.message != WM_QUIT)
+	{
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else
+		{
+			m_fNowTime = GetTickCount();
+			m_fDeltaTime = (m_fNowTime - m_fPrevTime) / 1000.f;
+
+			m_fPrevTime = m_fNowTime;
+		}
+	}
+
+	return true;
 }
 
 bool Application::_CreateWindow(wchar_t * title, int width, int height, bool windowed)
 {
-	return false;
+	WNDCLASS wc = {};
+	wc.lpfnWndProc = WndProc;
+	wc.lpszClassName = title;
+	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
+	
+	if (RegisterClass(&wc) == false)
+		return false;
+	
+	DWORD Style;
+	if (windowed)
+		Style = WS_POPUP;
+	else
+		Style = WS_POPUP | WS_EX_TOPMOST;
+
+	m_hWnd = CreateWindow(title, title, Style, 0, 0, width, height, NULL, NULL, NULL, NULL);
+
+	if (m_hWnd == nullptr)
+		return false;
+
+	ShowWindow(m_hWnd, SW_SHOWDEFAULT);
+
+	return true;
 }
 
 bool Application::_CreateRenderer()
 {
-	return false;
+	if (Renderer::GetInstance()->Init() == false)
+		return false;
+
+	return true;
 }
 
 LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
-	return LRESULT();
+	switch (Msg)
+	{
+	case WM_DESTROY:
+		PostQuitMessage(1);
+		break;
+	}
+
+	return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
