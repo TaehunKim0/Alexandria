@@ -11,3 +11,5 @@
 #include"Singleton.h"
 #include"Application.h"
 #include"Renderer.h"
+#include"Transform.h"
+#include"GameObject.h"

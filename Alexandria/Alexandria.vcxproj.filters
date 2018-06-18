@@ -1,17 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Application.h">
       <Filter>FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h" />
     <ClInclude Include="Renderer.h">
       <Filter>FrameWork</Filter>
     </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferManager.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Gate.cpp" />
     <ClCompile Include="Application.cpp">
       <Filter>FrameWork</Filter>
@@ -19,10 +34,31 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>stdafx</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="BufferManager.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FrameWork">
       <UniqueIdentifier>{9e5b77ee-c470-4a06-849a-1e9756ac91ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stdafx">
+      <UniqueIdentifier>{c91de302-5a60-4580-aa6d-bc47bcab1b1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node">
+      <UniqueIdentifier>{c32f9421-b6dc-4041-9fa9-558c8a755970}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

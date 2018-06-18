@@ -16,6 +16,7 @@ Application::Application() :
 
 Application::~Application()
 {
+	Release();
 }
 
 bool Application::Init(std::wstring title, int width, int height, bool windowed)
@@ -39,7 +40,10 @@ bool Application::Init(std::wstring title, int width, int height, bool windowed)
 
 bool Application::Release()
 {
-	return false;
+	Renderer::GetInstance()->Release();
+
+	printf("¸±¸®Áî µÊ");
+	return true;
 }
 
 bool Application::Run()
@@ -64,6 +68,8 @@ bool Application::Run()
 			Renderer::GetInstance()->End();
 		}
 	}
+
+	
 
 	return true;
 }
@@ -107,7 +113,11 @@ LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	switch (Msg)
 	{
 	case WM_DESTROY:
-		PostQuitMessage(1);
+		PostQuitMessage(0);
+		Application::GetInstance()->Release();
+		break;
+
+	case VK_ESCAPE:
 		break;
 	}
 
