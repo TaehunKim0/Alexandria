@@ -2,8 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Application.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Gate.cpp" />
+    <ClCompile Include="Application.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="FrameWork">
+      <UniqueIdentifier>{9e5b77ee-c470-4a06-849a-1e9756ac91ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
