@@ -18,7 +18,7 @@ Application::~Application()
 {
 }
 
-bool Application::Init(wchar_t * title, int width, int height, bool windowed)
+bool Application::Init(std::wstring title, int width, int height, bool windowed)
 {
 	m_Title = title;
 	m_iWindowWidth = width;
@@ -58,17 +58,21 @@ bool Application::Run()
 			m_fDeltaTime = (m_fNowTime - m_fPrevTime) / 1000.f;
 
 			m_fPrevTime = m_fNowTime;
+
+			Renderer::GetInstance()->Begin();
+
+			Renderer::GetInstance()->End();
 		}
 	}
 
 	return true;
 }
 
-bool Application::_CreateWindow(wchar_t * title, int width, int height, bool windowed)
+bool Application::_CreateWindow(std::wstring title, int width, int height, bool windowed)
 {
 	WNDCLASS wc = {};
 	wc.lpfnWndProc = WndProc;
-	wc.lpszClassName = title;
+	wc.lpszClassName = title.c_str();
 	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	
 	if (RegisterClass(&wc) == false)
@@ -80,7 +84,7 @@ bool Application::_CreateWindow(wchar_t * title, int width, int height, bool win
 	else
 		Style = WS_POPUP | WS_EX_TOPMOST;
 
-	m_hWnd = CreateWindow(title, title, Style, 0, 0, width, height, NULL, NULL, NULL, NULL);
+	m_hWnd = CreateWindow(title.c_str(), title.c_str(), Style, 0, 0, width, height, NULL, NULL, NULL, NULL);
 
 	if (m_hWnd == nullptr)
 		return false;

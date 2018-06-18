@@ -4,7 +4,7 @@ class Application : public Singleton<Application>
 private:
 	HWND m_hWnd;
 
-	wchar_t* m_Title;
+	std::wstring m_Title;
 
 	int m_iWindowWidth;
 	int m_iWindowHeight;
@@ -22,12 +22,12 @@ public:
 	virtual ~Application();
 
 public:
-	bool Init(wchar_t* title, int width, int height, bool windowed);
+	bool Init(std::wstring title, int width, int height, bool windowed);
 	bool Release();
 	bool Run();
 
 private:
-	bool _CreateWindow(wchar_t* title, int width, int height, bool windowed);
+	bool _CreateWindow(std::wstring title, int width, int height, bool windowed);
 	bool _CreateRenderer();
 
 private:
@@ -46,7 +46,7 @@ public:
 	inline HWND GetHandle() {
 		return m_hWnd;
 	}
-	inline wchar_t* GetTile() {
+	inline std::wstring GetTile() {
 		return m_Title;
 	}
 	inline bool GetWindowed() {
