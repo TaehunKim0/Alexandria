@@ -25,6 +25,9 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Node</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gate.cpp" />
@@ -49,6 +52,9 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Node</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FrameWork">
@@ -59,6 +65,9 @@
     </Filter>
     <Filter Include="Node">
       <UniqueIdentifier>{c32f9421-b6dc-4041-9fa9-558c8a755970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{a473cee0-845f-4266-866f-4a737bdf9bb1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

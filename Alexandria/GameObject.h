@@ -7,6 +7,12 @@ private:
 	LPDIRECT3DDEVICE9 m_Device;
 
 public:
+	GameObject * m_Parent;
+	std::string m_Name;
+
+	bool IsDestroyed;
+
+public:
 	GameObject();
 	virtual ~GameObject();
 

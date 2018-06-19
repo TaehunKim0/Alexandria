@@ -6,7 +6,7 @@
 #include<d3dx9.h>
 #include<time.h>
 #include<string>
-
+#include<list>
 //
 #include"Singleton.h"
 #include"Application.h"
