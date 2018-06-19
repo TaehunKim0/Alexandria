@@ -16,17 +16,23 @@
     <ClInclude Include="Transform.h">
       <Filter>Node</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Node\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Node\Object</Filter>
+    </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Node</Filter>
+      <Filter>Node\Object</Filter>
     </ClInclude>
     <ClInclude Include="BufferManager.h">
-      <Filter>Node</Filter>
+      <Filter>Node\Manager</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
-      <Filter>Node</Filter>
+      <Filter>Node\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Node</Filter>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -43,17 +49,23 @@
     <ClCompile Include="Transform.cpp">
       <Filter>Node</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Node\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Node\Object</Filter>
+    </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Node</Filter>
+      <Filter>Node\Object</Filter>
     </ClCompile>
     <ClCompile Include="BufferManager.cpp">
-      <Filter>Node</Filter>
+      <Filter>Node\Manager</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
-      <Filter>Node</Filter>
+      <Filter>Node\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Node</Filter>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>FrameWork</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +80,12 @@
     </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{a473cee0-845f-4266-866f-4a737bdf9bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node\Object">
+      <UniqueIdentifier>{f6db97e7-c19f-4080-9c33-6f54d0786ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node\Manager">
+      <UniqueIdentifier>{1354755f-af74-4067-8164-edb0c016d70b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
