@@ -1,8 +1,10 @@
 #pragma once
-class Scene
+class Scene : public GameObject
 {
 public:
 	Scene();
-	~Scene();
-};
+	virtual ~Scene();
 
+	virtual void Update(float deltaTime);
+	virtual void Render();
+};

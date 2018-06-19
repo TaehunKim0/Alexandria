@@ -1,5 +1,5 @@
 #pragma once
-class ObjectManager
+class ObjectManager : public Singleton<ObjectManager>
 {
 private:
 	std::list<GameObject*> m_ObjectList;

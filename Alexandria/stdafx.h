@@ -17,4 +17,7 @@
 #include"Renderer.h"
 #include"Transform.h"
 #include"GameObject.h"
+#include"Mesh.h"
 #include"ObjectManager.h"
+#include"Scene.h"
+#include"Camera.h"
