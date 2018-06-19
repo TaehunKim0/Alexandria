@@ -41,13 +41,18 @@ bool Application::Init(std::wstring title, int width, int height, bool windowed)
 bool Application::Release()
 {
 	Renderer::GetInstance()->Release();
+	ObjectManager::GetInstance()->Release();
 
 	printf("¸±¸®Áî µÊ");
 	return true;
 }
-
+#include"ForestScene.h"
 bool Application::Run()
 {
+	auto scene = new ForestScene();
+	scene->Init();
+	SceneManager::GetInstance()->SetScene(scene);
+
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
 	{
@@ -64,7 +69,8 @@ bool Application::Run()
 			m_fPrevTime = m_fNowTime;
 
 			Renderer::GetInstance()->Begin();
-
+			SceneManager::GetInstance()->Update(60.f);
+			SceneManager::GetInstance()->Render();
 			Renderer::GetInstance()->End();
 		}
 	}

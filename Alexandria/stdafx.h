@@ -20,4 +20,5 @@
 #include"Mesh.h"
 #include"ObjectManager.h"
 #include"Scene.h"
+#include"SceneManager.h"
 #include"Camera.h"

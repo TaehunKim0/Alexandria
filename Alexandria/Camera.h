@@ -27,6 +27,7 @@ public:
 
 	void Update(float deltaTime);
 	void SetTransform();
+
 public:
 	void SetTarget(GameObject* target);
 	void SetCameraThirdPerson(GameObject* target);
