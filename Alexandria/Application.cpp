@@ -69,6 +69,8 @@ bool Application::Run()
 
 			m_fPrevTime = m_fNowTime;
 
+			Input::GetInstance()->Update();
+
 			Camera::GetInstance()->Update(m_fDeltaTime);
 
 			Renderer::GetInstance()->Begin();

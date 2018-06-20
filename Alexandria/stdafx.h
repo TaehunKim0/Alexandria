@@ -15,6 +15,7 @@
 
 //
 #include"Singleton.h"
+#include"Input.h"
 #include"Application.h"
 #include"Renderer.h"
 #include"Transform.h"
