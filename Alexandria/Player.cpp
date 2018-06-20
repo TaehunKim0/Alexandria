@@ -20,7 +20,22 @@ void Player::Update(float deltaTime)
 {
 	GameObject::Update(deltaTime);
 
-	printf("플레이어 업데이트!\n");
+	if (Input::GetInstance()->GetKeyState(VK_RIGHT) == KeyState::Pressed)
+	{
+		Translate(1.f, 0.f, 0.f);
+	}
+	if (Input::GetInstance()->GetKeyState(VK_LEFT) == KeyState::Pressed)
+	{
+		Translate(-1.f, 0.f, 0.f);
+	}
+	if (Input::GetInstance()->GetKeyState(VK_UP) == KeyState::Pressed)
+	{
+		Translate(0.f, 0.f, 1.f);
+	}
+	if (Input::GetInstance()->GetKeyState(VK_DOWN) == KeyState::Pressed)
+	{
+		Translate(0.f, 0.f, -1.f);
+	}
 }
 
 void Player::Render()

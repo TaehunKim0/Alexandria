@@ -43,11 +43,17 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Node\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="WindMill.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Game\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -91,11 +97,17 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Node\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="WindMill.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +128,9 @@
     </Filter>
     <Filter Include="Node\Manager">
       <UniqueIdentifier>{1354755f-af74-4067-8164-edb0c016d70b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object">
+      <UniqueIdentifier>{1e5e8dbc-f4f8-4be5-896f-eaab1a82cc4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

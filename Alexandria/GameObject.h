@@ -22,4 +22,29 @@ public:
 public:
 	virtual void Update(float deltaTime);
 	virtual void Render();
+
+public:
+	inline void SetPosition(float x, float y, float z) {
+		m_Transform->m_Position.x = x;
+		m_Transform->m_Position.y = y;
+		m_Transform->m_Position.z = z;
+	}
+	inline void Translate(float x, float y, float z) {
+		m_Transform->m_Position.x += x;
+		m_Transform->m_Position.y += y;
+		m_Transform->m_Position.z += z;
+	}
+	inline void SetRotationX(float angle) {
+		m_Transform->m_fRotX += angle;
+	}
+	inline void SetRotationY(float angle) {
+		m_Transform->m_fRotY += angle;
+	}
+	inline void SetRotationZ(float angle) {
+		m_Transform->m_fRotZ += angle;
+	}
+	inline Transform* GetTransform() {
+		return m_Transform;
+	}
+
 };

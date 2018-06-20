@@ -18,6 +18,7 @@
 #include"Input.h"
 #include"Application.h"
 #include"Renderer.h"
+#include"BufferManager.h"
 #include"Transform.h"
 #include"GameObject.h"
 #include"Mesh.h"

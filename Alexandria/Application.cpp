@@ -70,7 +70,6 @@ bool Application::Run()
 			m_fPrevTime = m_fNowTime;
 
 			Input::GetInstance()->Update();
-
 			Camera::GetInstance()->Update(m_fDeltaTime);
 
 			Renderer::GetInstance()->Begin();
@@ -131,7 +130,12 @@ LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 		Application::GetInstance()->Release();
 		break;
 
-	case VK_ESCAPE:
+	case WM_RBUTTONDOWN:
+		Input::GetInstance()->ButtonDown(true);
+		break;
+
+	case WM_RBUTTONUP:
+		Input::GetInstance()->ButtonDown(false);
 		break;
 	}
 
