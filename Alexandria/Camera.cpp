@@ -3,7 +3,7 @@
 
 
 Camera::Camera() :
-	m_EyePt(0.f,10.f,-30.f)
+	m_EyePt(0.f,10.f,-10.f)
 	, m_fRotX(0.f)
 	, m_fRotY(0.f)
 	, m_LookAtPt(0.f,0.f,0.f)

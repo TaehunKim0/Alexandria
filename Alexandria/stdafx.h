@@ -11,6 +11,8 @@
 #include<string>
 #include<list>
 #include<map>
+#include<vector>
+
 //
 #include"Singleton.h"
 #include"Application.h"

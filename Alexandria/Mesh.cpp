@@ -64,12 +64,14 @@ bool Mesh::Init(std::wstring fileName, std::wstring Name)
 
 		bf = fileName;
 
-		if (d3dMaterials[i].pTextureFilename != NULL && lstrlen(LPCWSTR(d3dMaterials[i].pTextureFilename)) > 0)
+		std::string mycstr(bf.begin(), bf.end());
+
+		if (d3dMaterials[i].pTextureFilename != NULL)
 		{
-			bf += LPCWSTR(d3dMaterials[i].pTextureFilename);
-			
+			mycstr += d3dMaterials[i].pTextureFilename;
+
 			//텍스쳐를 파일에서 로드한다.
-			if (FAILED(D3DXCreateTextureFromFile(Renderer::GetInstance()->GetDevice(), bf.c_str(), &m_MeshTextures[i])))
+			if (FAILED(D3DXCreateTextureFromFileA(Renderer::GetInstance()->GetDevice(), mycstr.c_str(), &m_MeshTextures[i])))
 			{
 				MessageBox(NULL, L"Texture is None", L"3DWorld.exe", MB_OK);
 				return false;

@@ -61,6 +61,7 @@ bool Application::Run()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
+
 		else
 		{
 			m_fNowTime = GetTickCount();
@@ -68,9 +69,13 @@ bool Application::Run()
 
 			m_fPrevTime = m_fNowTime;
 
+			Camera::GetInstance()->Update(m_fDeltaTime);
+
 			Renderer::GetInstance()->Begin();
-			SceneManager::GetInstance()->Update(60.f);
+
+			SceneManager::GetInstance()->Update(m_fDeltaTime);
 			SceneManager::GetInstance()->Render();
+
 			Renderer::GetInstance()->End();
 		}
 	}
@@ -102,6 +107,7 @@ bool Application::_CreateWindow(std::wstring title, int width, int height, bool 
 		return false;
 
 	ShowWindow(m_hWnd, SW_SHOWDEFAULT);
+	UpdateWindow(m_hWnd);
 
 	return true;
 }

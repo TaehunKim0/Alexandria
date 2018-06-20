@@ -15,10 +15,11 @@ Transform::Transform() :
 	D3DXMatrixIdentity(&m_matTranslation);
 }
 
-
 Transform::~Transform()
 {
 }
+
+
 
 void Transform::SetTransform(LPDIRECT3DDEVICE9 device)
 {

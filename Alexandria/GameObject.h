@@ -11,6 +11,9 @@ public:
 	std::string m_Name;
 
 	bool IsDestroyed;
+	bool m_UseBlending;
+
+	int m_Layer;
 
 public:
 	GameObject();

@@ -26,6 +26,7 @@ public:
 	Transform();
 	virtual ~Transform();
 
+
 	void SetTransform(LPDIRECT3DDEVICE9 device);
 };
 

@@ -14,6 +14,7 @@ ForestScene::~ForestScene()
 void ForestScene::Init()
 {
 	player = new Player();
+	player->Init();
 	ObjectManager::GetInstance()->AddObject(player);
 }
 

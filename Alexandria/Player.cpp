@@ -11,6 +11,11 @@ Player::~Player()
 {
 }
 
+void Player::Init()
+{
+	m_Mesh = Mesh::Create(L"./Resource/Mesh/", L"TombStone.x");
+}
+
 void Player::Update(float deltaTime)
 {
 	GameObject::Update(deltaTime);
@@ -21,4 +26,6 @@ void Player::Update(float deltaTime)
 void Player::Render()
 {
 	GameObject::Render();
+
+	m_Mesh->Render();
 }
