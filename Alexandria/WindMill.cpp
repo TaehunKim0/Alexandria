@@ -49,7 +49,7 @@ void WindMill::Init()
 
 void WindMill::SetWindMillVertex()
 {
-	m_WindMillBodyBuffer->SetVertexBuffer(5, sizeof(TEXVERTEX), TexVertexFVF, 4);
+	m_WindMillBodyBuffer->CreateVertexBuffer(5, sizeof(TEXVERTEX), TexVertexFVF, 4);
 
 	TEXVERTEX* vertex = nullptr;
 	m_WindMillBodyBuffer->GetVB()->Lock(0, 0, (VOID**)&vertex, 0);
@@ -61,7 +61,7 @@ void WindMill::SetWindMillVertex()
 
 void WindMill::SetWindMillIndex()
 {
-	m_WindMillBodyBuffer->SetIndexBuffer(4, sizeof(INDEX));
+	m_WindMillBodyBuffer->CreateIndexBuffer(4, sizeof(INDEX));
 
 	INDEX* index = nullptr;
 

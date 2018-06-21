@@ -7,8 +7,15 @@ BufferManager::BufferManager()
 	, m_iVertex(0)
 	, m_uSize(0)
 	, m_iTriangleNum(0)
+	, m_bUseMtrl(false)
 {
 	m_Texture = nullptr;
+
+	ZeroMemory(&m_Mtrl, sizeof(D3DMATERIAL9));
+	m_Mtrl.Ambient = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
+	m_Mtrl.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
+	m_Mtrl.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
+	m_Mtrl.Power = 3;
 }
 
 
@@ -30,7 +37,7 @@ void BufferManager::CreateTexture(std::wstring fileName)
 	}
 }
 
-void BufferManager::SetVertexBuffer(int vertexs, UINT size, DWORD FVF , int trianglenum)
+void BufferManager::CreateVertexBuffer(int vertexs, UINT size, DWORD FVF , int trianglenum)
 {
 	m_iVertex = vertexs;
 	m_uSize = size;
@@ -42,12 +49,20 @@ void BufferManager::SetVertexBuffer(int vertexs, UINT size, DWORD FVF , int tria
 	}
 }
 
-void BufferManager::SetIndexBuffer(int vertexs, UINT size)
+void BufferManager::CreateIndexBuffer(int vertexs, UINT size)
 {
 	if (FAILED(Renderer::GetInstance()->GetDevice()->CreateIndexBuffer(vertexs * size , 0, D3DFMT_INDEX32, D3DPOOL_MANAGED, &m_pIB, nullptr)))
 	{
 		printf("인덱스 버퍼 생성 실패\n");
 	}
+}
+
+void BufferManager::SetMaterial(D3DXCOLOR ambient, D3DXCOLOR diffuse, D3DXCOLOR specular, float power)
+{
+	m_Mtrl.Ambient = ambient;
+	m_Mtrl.Diffuse = diffuse;
+	m_Mtrl.Specular = specular;
+	m_Mtrl.Power = power;
 }
 
 void BufferManager::VertexLock(VERTEX * vertex)
@@ -77,6 +92,9 @@ void BufferManager::IndexUnLock()
 
 void BufferManager::Render()
 {
+	if (m_bUseMtrl)
+		Renderer::GetInstance()->GetDevice()->SetMaterial(&m_Mtrl);
+
 	Renderer::GetInstance()->GetDevice()->SetTexture(0, m_Texture);
 	Renderer::GetInstance()->GetDevice()->SetIndices(m_pIB);
 	Renderer::GetInstance()->GetDevice()->SetFVF(m_dFVF);

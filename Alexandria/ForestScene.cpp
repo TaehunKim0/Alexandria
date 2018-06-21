@@ -2,6 +2,7 @@
 #include "ForestScene.h"
 #include"Player.h"
 #include"WindMill.h"
+#include"Terrain.h"
 
 ForestScene::ForestScene()
 {
@@ -22,6 +23,9 @@ void ForestScene::Init()
 	windMill->Init();
 	ObjectManager::GetInstance()->AddObject(windMill);
 
+	terrain = new Terrain();
+	terrain->Init();
+	ObjectManager::GetInstance()->AddObject(terrain);
 }
 
 void ForestScene::Update(float deltaTime)

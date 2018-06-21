@@ -17,6 +17,7 @@ public:
 	UINT m_uSize;
 	DWORD m_dFVF;
 	int m_iTriangleNum;
+	bool m_bUseMtrl;
 
 public:
 	BufferManager();
@@ -26,8 +27,9 @@ public:
 
 public:
 	void CreateTexture(std::wstring fileName);
-	void SetVertexBuffer(int vertexs, UINT size, DWORD FVF , int trianglenum);
-	void SetIndexBuffer(int vertexs, UINT size);
+	void CreateVertexBuffer(int vertexs, UINT size, DWORD FVF , int trianglenum);
+	void CreateIndexBuffer(int vertexs, UINT size);
+	void SetMaterial(D3DXCOLOR ambient, D3DXCOLOR diffuse, D3DXCOLOR specular, float power);
 
 public:
 	void VertexLock(TEXVERTEX* vertex);
@@ -46,6 +48,12 @@ public:
 	}
 	inline LPDIRECT3DINDEXBUFFER9 GetIB() {
 		return m_pIB;
+	}
+	inline D3DMATERIAL9 GetMtrl() {
+		return m_Mtrl;
+	}
+	inline void UseMtrl(bool use) {
+		m_bUseMtrl = use;
 	}
 
 };
