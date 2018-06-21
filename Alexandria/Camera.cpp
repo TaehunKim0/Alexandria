@@ -41,8 +41,8 @@ void Camera::Update(float deltaTime)
 
 	if (Input::GetInstance()->GetKeyState(VK_RBUTTON) == KeyState::Pressed)
 	{
-		m_fRotX -= Input::GetInstance()->GetDeltaMove().x / 100;
-		m_fRotY -= Input::GetInstance()->GetDeltaMove().y / 100;
+		m_fRotX -= Input::GetInstance()->GetDeltaMove().x / 300;
+		m_fRotY -= Input::GetInstance()->GetDeltaMove().y / 300;
 	}
 
 	D3DXMatrixRotationY(&matRotX, m_fRotX);
@@ -81,6 +81,8 @@ void Camera::Update(float deltaTime)
 		m_LookAtPt = m_EyePt + vLook;
 	}
 
+	vLook *= 0.5f;
+	m_RightVec *= 0.5f;
 	if (Input::GetInstance()->GetKeyState('W') == KeyState::Pressed)
 	{
 		m_EyePt += vLook;

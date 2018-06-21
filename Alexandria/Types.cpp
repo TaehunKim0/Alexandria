@@ -1,0 +1,5 @@
+#include"stdafx.h"
+#include"Types.h"
+
+DWORD VertexFVF = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE;
+DWORD TexVertexFVF = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1;

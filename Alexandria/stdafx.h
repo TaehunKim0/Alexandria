@@ -14,6 +14,7 @@
 #include<vector>
 
 //
+#include"Types.h"
 #include"Singleton.h"
 #include"Input.h"
 #include"Application.h"

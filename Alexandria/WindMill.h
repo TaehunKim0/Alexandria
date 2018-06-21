@@ -1,7 +1,7 @@
 #pragma once
 class WindMill : public GameObject
 {
-	BufferManager m_Buffer;
+	BufferManager* m_WindMillBodyBuffer;
 
 public:
 	WindMill();
@@ -10,7 +10,9 @@ public:
 public:
 	void Init();
 
+	void SetWindMillVertex();
+	void SetWindMillIndex();
+
 	void Update(float deltaTime) override;
 	void Render() override;
 };
-

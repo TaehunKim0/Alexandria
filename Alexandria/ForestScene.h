@@ -1,10 +1,12 @@
 #pragma once
 
 class Player;
+class WindMill;
 class ForestScene : public Scene
 {
 public:
 	Player * player;
+	WindMill* windMill;
 
 public:
 	ForestScene();

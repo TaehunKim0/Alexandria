@@ -46,6 +46,7 @@ bool Application::Release()
 	printf("¸±¸®Áî µÊ");
 	return true;
 }
+
 #include"ForestScene.h"
 bool Application::Run()
 {
@@ -70,7 +71,6 @@ bool Application::Run()
 			m_fPrevTime = m_fNowTime;
 
 			Input::GetInstance()->Update();
-			Camera::GetInstance()->Update(m_fDeltaTime);
 
 			Renderer::GetInstance()->Begin();
 
@@ -80,8 +80,6 @@ bool Application::Run()
 			Renderer::GetInstance()->End();
 		}
 	}
-
-	
 
 	return true;
 }
@@ -102,10 +100,11 @@ bool Application::_CreateWindow(std::wstring title, int width, int height, bool 
 	else
 		Style = WS_POPUP | WS_EX_TOPMOST;
 
-	m_hWnd = CreateWindow(title.c_str(), title.c_str(), Style, 0, 0, width, height, NULL, NULL, NULL, NULL);
+	m_hWnd = CreateWindow(title.c_str(), title.c_str(), WS_OVERLAPPEDWINDOW, 0, 0, width, height, NULL, NULL, NULL, NULL);
 
 	if (m_hWnd == nullptr)
 		return false;
+
 
 	ShowWindow(m_hWnd, SW_SHOWDEFAULT);
 	UpdateWindow(m_hWnd);
@@ -128,6 +127,7 @@ LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		Application::GetInstance()->Release();
+		FreeConsole();
 		break;
 
 	case WM_RBUTTONDOWN:

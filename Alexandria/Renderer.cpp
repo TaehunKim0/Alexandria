@@ -32,7 +32,7 @@ bool Renderer::Init()
 
 	m_D3DDevice->SetRenderState(D3DRS_ZENABLE, true); //깊이 테스트 
 	m_D3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE); //컬링 
-	m_D3DDevice->SetRenderState(D3DRS_LIGHTING, false); //라이팅 
+	m_D3DDevice->SetRenderState(D3DRS_LIGHTING, true); //라이팅 
 
 	m_D3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, true); //알파 블렌딩
 	m_D3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA); //텍스쳐가 가진 알파 그대로 씀
@@ -41,6 +41,19 @@ bool Renderer::Init()
 	m_D3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR); //멀리 있는 텍스쳐 축소
 	m_D3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR); //가까이 있는 텍스쳐 확대
 	m_D3DDevice->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR); //자연스러운 보간
+
+	ZeroMemory(&Light, sizeof(D3DLIGHT9));
+
+	Light.Type = D3DLIGHT_DIRECTIONAL;
+
+	Light.Direction = D3DXVECTOR3(0.f, -1.f, 1.f);
+
+	Light.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f); //난반사광 (다수의 방향으로 반사됨)
+	Light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.f); //주변광 (특별한 방향없이 주변을 덮고 있는 빛)
+	Light.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f); //정반사광 (한 방향으로만 반사되는 빛)
+
+	m_D3DDevice->SetLight(0, &Light);
+	m_D3DDevice->LightEnable(0, true);
 
 	return true;
 }

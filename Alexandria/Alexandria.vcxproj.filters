@@ -55,6 +55,9 @@
     <ClInclude Include="Terrain.h">
       <Filter>Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>stdafx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gate.cpp" />
@@ -108,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="Terrain.cpp">
       <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Types.cpp">
+      <Filter>stdafx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

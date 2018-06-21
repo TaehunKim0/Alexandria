@@ -5,6 +5,8 @@ public:
 	LPDIRECT3D9 m_D3D;
 	LPDIRECT3DDEVICE9 m_D3DDevice;
 	LPD3DXSPRITE m_Sprite;
+	D3DLIGHT9 Light;
+
 
 	bool m_bWireFrame;
 

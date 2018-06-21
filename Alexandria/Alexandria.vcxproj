@@ -145,6 +145,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Types.h" />
     <ClInclude Include="WindMill.h" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     </ClCompile>
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Types.cpp" />
     <ClCompile Include="WindMill.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
