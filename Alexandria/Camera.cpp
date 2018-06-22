@@ -73,7 +73,7 @@ void Camera::Update(float deltaTime)
 	{
 		if (m_Target)
 		{
-			m_LookAtPt = m_Target->GetTransform()->m_Position;		// 카메라는 항상 타겟을 바라본다. (3인칭 시점)
+			m_LookAtPt = m_Target->GetTransform()->GetPosition();		// 카메라는 항상 타겟을 바라본다. (3인칭 시점)
 		}
 	}
 	else

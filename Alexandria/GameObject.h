@@ -3,12 +3,13 @@
 class GameObject
 {
 private:
-	Transform * m_Transform;
 	LPDIRECT3DDEVICE9 m_Device;
 
 public:
 	GameObject * m_Parent;
 	std::string m_Name;
+
+	Transform * m_Transform;
 
 	bool IsDestroyed;
 	bool m_UseBlending;
@@ -25,26 +26,25 @@ public:
 
 public:
 	inline void SetPosition(float x, float y, float z) {
-		m_Transform->m_Position.x = x;
-		m_Transform->m_Position.y = y;
-		m_Transform->m_Position.z = z;
+		m_Transform->SetPosition(x, y, z);
 	}
 	inline void Translate(float x, float y, float z) {
-		m_Transform->m_Position.x += x;
-		m_Transform->m_Position.y += y;
-		m_Transform->m_Position.z += z;
+		m_Transform->Translate(x, y, z);
 	}
 	inline void SetRotationX(float angle) {
-		m_Transform->m_fRotX += angle;
+		m_Transform->SetRotationX(angle);
 	}
 	inline void SetRotationY(float angle) {
-		m_Transform->m_fRotY += angle;
+		m_Transform->SetRotationY(angle);
 	}
 	inline void SetRotationZ(float angle) {
-		m_Transform->m_fRotZ += angle;
+		m_Transform->SetRotationZ(angle);
 	}
 	inline Transform* GetTransform() {
 		return m_Transform;
+	}
+	inline LPDIRECT3DDEVICE9 GetDevice() {
+		return m_Device;
 	}
 
 };

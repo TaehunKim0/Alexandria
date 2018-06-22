@@ -43,6 +43,7 @@ void BufferManager::CreateVertexBuffer(int vertexs, UINT size, DWORD FVF , int t
 	m_uSize = size;
 	m_dFVF = FVF;
 	m_iTriangleNum = trianglenum;
+
 	if (FAILED(Renderer::GetInstance()->GetDevice()->CreateVertexBuffer(vertexs * size, 0, FVF, D3DPOOL_MANAGED, &m_pVB, nullptr)))
 	{
 		printf("버텍스 버퍼 생성 실패\n");

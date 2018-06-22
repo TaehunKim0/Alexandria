@@ -65,6 +65,10 @@ bool Application::Run()
 
 		else
 		{
+			if (Input::GetInstance()->GetKeyState(VK_ESCAPE) == KeyState::Up) {
+				exit(0);
+			}
+
 			m_fNowTime = GetTickCount();
 			m_fDeltaTime = (m_fNowTime - m_fPrevTime) / 1000.f;
 

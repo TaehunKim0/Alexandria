@@ -34,9 +34,9 @@ bool Renderer::Init()
 	m_D3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE); //컬링 
 	m_D3DDevice->SetRenderState(D3DRS_LIGHTING, true); //라이팅 
 
-	m_D3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, true); //알파 블렌딩
-	m_D3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA); //텍스쳐가 가진 알파 그대로 씀
-	m_D3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA); //텍스쳐가 가진 알파를 1 - srcalpha
+	//m_D3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, true); //알파 블렌딩
+	//m_D3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA); //텍스쳐가 가진 알파 그대로 씀
+	//m_D3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA); //텍스쳐가 가진 알파를 1 - srcalpha
 
 	m_D3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR); //멀리 있는 텍스쳐 축소
 	m_D3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR); //가까이 있는 텍스쳐 확대

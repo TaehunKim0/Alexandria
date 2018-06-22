@@ -8,18 +8,18 @@ Transform::Transform() :
 	, m_fRotZ(0.f)
 	, m_Position(0.f,0.f,0.f)
 	, m_Scale(1.f,1.f,1.f)
+	, m_Direction(0.f,0.f,-1.f)
 {
 	D3DXMatrixIdentity(&m_wMatrix);
 	D3DXMatrixIdentity(&m_matScale);
 	D3DXMatrixIdentity(&m_matRotation);
 	D3DXMatrixIdentity(&m_matTranslation);
+	D3DXMatrixIdentity(&m_ParentMat);
 }
 
 Transform::~Transform()
 {
 }
-
-
 
 void Transform::SetTransform(LPDIRECT3DDEVICE9 device)
 {
@@ -40,6 +40,8 @@ void Transform::SetTransform(LPDIRECT3DDEVICE9 device)
 	//S * R * T
 	m_wMatrix = m_matScale * matR * m_matTranslation;
 
+	if (m_ParentMatUse)
+		m_wMatrix *= m_ParentMat;
 
 	device->SetTransform(D3DTS_WORLD, &m_wMatrix);
 }
