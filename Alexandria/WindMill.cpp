@@ -50,36 +50,44 @@ void WindMill::Init()
 
 	SetWindMillVertex();
 	SetWindMillIndex();
+
+	m_WingTrans->SetParent(this);
 }
 
 void WindMill::Move()
 {
+	D3DXVec3TransformNormal(&Dir, &m_Transform->GetDirection(), &m_Transform->GetRotY());
+	D3DXVec3Normalize(&Dir, &Dir);
+
+
 	if (Input::GetInstance()->GetKeyState(VK_RIGHT) == KeyState::Pressed)
 	{
-		Translate(1.f, 0.f, 0.f);
+		m_Transform->SetRotationY(0.1f);
 	}
 	if (Input::GetInstance()->GetKeyState(VK_LEFT) == KeyState::Pressed)
 	{
-		Translate(-1.f, 0.f, 0.f);
+		m_Transform->SetRotationY(-0.1f);
 	}
 	if (Input::GetInstance()->GetKeyState(VK_UP) == KeyState::Pressed)
 	{
-		Translate(0.f, 0.f, 1.f);
+		Translate(Dir.x, Dir.y, Dir.z);
 	}
 	if (Input::GetInstance()->GetKeyState(VK_DOWN) == KeyState::Pressed)
 	{
-		Translate(0.f, 0.f, -1.f);
+		Translate(-Dir.x, -Dir.y, -Dir.z);
 	}
 }
 
 void WindMill::ShootWing()
 {
-	D3DXVECTOR3 vDir(0, 0, -1);
-	D3DXVec3TransformNormal(&vDir, &vDir, &m_WingTrans->GetRotY());
-	D3DXVec3Normalize(&vDir, &vDir);
+	m_WingTrans->SetParentMatUse(false);
+	mTemp = m_Transform->GetRotY();
+	m_WingTrans->SetWorldMatrix(m_Transform->GetWorldMat());
+	m_WingTrans->SetDirection(Dir);
 
+	m_TempPosition = m_WingTrans->GetPosition();
 
-
+	m_bShoot = true;
 }
 
 void WindMill::SetWindMillVertex()
@@ -153,26 +161,40 @@ void WindMill::SetWindMillIndex()
 
 	m_WindMillWingBuffer->GetIB()->Unlock();
 }
-
 void WindMill::Update(float deltaTime)
 {
 	GameObject::Update(deltaTime);
 	Move();
 
-	if (Input::GetInstance()->GetKeyState(VK_SPACE) == KeyState::Up)
+	if (Input::GetInstance()->GetKeyState('1') == KeyState::Up)
 	{
-		ShootWing();
+		if(m_bShoot == false)
+			ShootWing();
 	}
 
+	if (m_bShoot)
+	{
+		m_WingTrans->SetmatRotY(mTemp);
+		m_WingTrans->Translate(m_WingTrans->GetDirection());
+
+		printf("%f %f %f\n", m_WingTrans->GetPosition().x, m_WingTrans->GetPosition().y, m_WingTrans->GetPosition().z);
+
+		printf("Direction : %f \n", m_TempPosition.z + m_WingTrans->GetDirection().z * 100);
+
+		if (m_WingTrans->GetPosition() < m_TempPosition + m_WingTrans->GetDirection() * 100)
+		{
+			m_bShoot = false;
+		}
+	}
 }
 
 void WindMill::Render()
 {
 	GameObject::Render();
-	m_WindMillBodyBuffer->Render();
 
-	m_WingTrans->SetParent(m_Transform->GetWorldMat());
 	m_WingTrans->SetTransform(GetDevice());
-
 	m_WindMillWingBuffer->Render();
+
+	m_Transform->SetTransform(GetDevice());
+	m_WindMillBodyBuffer->Render();
 }

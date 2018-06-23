@@ -15,8 +15,10 @@ Transform::Transform() :
 	D3DXMatrixIdentity(&m_matRotation);
 	D3DXMatrixIdentity(&m_matTranslation);
 	D3DXMatrixIdentity(&m_ParentMat);
-}
 
+	m_Parent = nullptr;
+}
+	
 Transform::~Transform()
 {
 }
@@ -39,9 +41,9 @@ void Transform::SetTransform(LPDIRECT3DDEVICE9 device)
 	
 	//S * R * T
 	m_wMatrix = m_matScale * matR * m_matTranslation;
-
-	if (m_ParentMatUse)
-		m_wMatrix *= m_ParentMat;
+	
+	if (m_ParentMatUse && m_Parent != nullptr)
+		m_wMatrix *= m_Parent->GetTransform()->GetWorldMat();
 
 	device->SetTransform(D3DTS_WORLD, &m_wMatrix);
 }

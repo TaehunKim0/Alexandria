@@ -12,7 +12,7 @@ public:
 	Transform * m_Transform;
 
 	bool IsDestroyed;
-	bool m_UseBlending;
+	int m_UseBlending;
 
 	int m_Layer;
 

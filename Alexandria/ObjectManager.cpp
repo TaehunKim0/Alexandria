@@ -71,8 +71,17 @@ void ObjectManager::Update(float deltaTime)
 	}
 }
 
+bool operator < (const GameObject& rhs1, const GameObject& rhs2) {
+	return rhs1.m_UseBlending < rhs2.m_UseBlending;
+}
+
 void ObjectManager::Render()
 {
+	m_ObjectList.sort();
+	m_ObjectList.reverse();
+
+
+
 	for (auto iter = m_ObjectList.begin(); iter != m_ObjectList.end(); iter++)
 	{
 		(*iter)->Render();

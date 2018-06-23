@@ -7,6 +7,7 @@ public:
 	LPD3DXSPRITE m_Sprite;
 	D3DLIGHT9 Light;
 
+	int m_iLightChannel;
 
 	bool m_bWireFrame;
 
@@ -22,6 +23,8 @@ public:
 	bool End();
 
 public:
+	void SetLights(D3DLIGHT9* light);
+
 	inline LPDIRECT3D9 GetD3D() {
 		return m_D3D;
 	}

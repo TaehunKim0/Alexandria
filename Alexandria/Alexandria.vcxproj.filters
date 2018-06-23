@@ -58,6 +58,9 @@
     <ClInclude Include="Types.h">
       <Filter>stdafx</Filter>
     </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gate.cpp" />
@@ -114,6 +117,9 @@
     </ClCompile>
     <ClCompile Include="Types.cpp">
       <Filter>stdafx</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

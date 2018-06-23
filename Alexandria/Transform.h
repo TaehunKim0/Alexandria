@@ -1,9 +1,12 @@
 #pragma once
+class GameObject;
 class Transform
 {
 private:
 	D3DXMATRIX m_wMatrix;
 	D3DXMATRIX m_ParentMat;
+
+	GameObject* m_Parent;
 
 	bool m_ParentMatUse;
 private:
@@ -33,16 +36,33 @@ public:
 	void SetTransform(LPDIRECT3DDEVICE9 device);
 
 public:
+	inline void SetWorldMatrix(D3DXMATRIX wMat) {
+		m_wMatrix = wMat;
+	}
+
 	inline void SetPosition(float x, float y, float z) {
 		m_Position.x = x;
 		m_Position.y = y;
 		m_Position.z = z;
+	}
+	inline void Translate(D3DXVECTOR3 mat) {
+		m_Position += mat;
 	}
 	inline void Translate(float x, float y, float z) {
 		m_Position.x += x;
 		m_Position.y += y;
 		m_Position.z += z;
 	}
+	inline void SetmatRotX(D3DXMATRIX rot) {
+		m_matRotX = rot;
+	}
+	inline void SetmatRotY(D3DXMATRIX rot) {
+		m_matRotY = rot;
+	}
+	inline void SetmatRotZ(D3DXMATRIX rot) {
+		m_matRotZ = rot;
+	}
+
 	inline void SetRotationX(float angle) {
 		m_fRotX += angle;
 	}
@@ -52,13 +72,16 @@ public:
 	inline void SetRotationZ(float angle) {
 		m_fRotZ += angle;
 	}
-	inline void SetParent(D3DXMATRIX mat) {
-		m_ParentMat = mat;
+	inline void SetParent(GameObject* obj) {
+		//m_ParentMat = mat;
+		m_Parent = obj;
 		m_ParentMatUse = true;
 	}
 	inline void SetParentMatUse(bool use) {
-		if (m_ParentMat != 0)
-			m_ParentMatUse = false;
+			m_ParentMatUse = use;
+	}
+	inline void SetDirection(D3DXVECTOR3 direction) {
+		m_Direction = direction;
 	}
 	inline void SetDirection(float x, float y, float z) {
 		m_Direction.x = x;

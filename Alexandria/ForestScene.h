@@ -3,6 +3,7 @@
 class Player;
 class WindMill;
 class Terrain;
+class PointLight;
 
 class ForestScene : public Scene
 {
@@ -10,6 +11,7 @@ public:
 	Player * player;
 	WindMill* windMill;
 	Terrain* terrain;
+	PointLight* m_PointLight1;
 
 public:
 	ForestScene();

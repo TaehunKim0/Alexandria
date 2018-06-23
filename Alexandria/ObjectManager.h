@@ -1,4 +1,7 @@
 #pragma once
+
+
+
 class ObjectManager : public Singleton<ObjectManager>
 {
 private:
@@ -16,21 +19,7 @@ public:
 
 	void RemoveObject(GameObject* obj);
 	void RemoveCollisionObject(GameObject* obj);
-
-
-	bool Compare (const GameObject* obj1, const GameObject* obj2) const
-	{
-		if (obj1->m_UseBlending == true && obj2->m_UseBlending == false)
-		{
-			return true;
-		}
-		else
-			return false;
-	/*	if (obj1->m_UseBlending == true && obj2->m_UseBlending == true)
-		{
-			return false;
-		}*/
-	}
+	
 	
 
 public:
