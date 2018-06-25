@@ -7,10 +7,15 @@ class WindMill : public GameObject
 	Transform* m_WingTrans;
 
 	bool m_bShoot;
+	bool m_bReturn;
 
+	D3DXVECTOR3 reDir;
 	D3DXVECTOR3 Dir;
 	D3DXMATRIX mTemp;
 	D3DXVECTOR3 m_TempPosition;
+	D3DXVECTOR3 mDirTemp;
+
+	float m_fDistance;
 
 public:
 	WindMill();

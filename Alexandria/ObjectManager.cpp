@@ -78,9 +78,6 @@ bool operator < (const GameObject& rhs1, const GameObject& rhs2) {
 void ObjectManager::Render()
 {
 	m_ObjectList.sort();
-	m_ObjectList.reverse();
-
-
 
 	for (auto iter = m_ObjectList.begin(); iter != m_ObjectList.end(); iter++)
 	{

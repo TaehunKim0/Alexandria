@@ -36,6 +36,10 @@ public:
 	void SetTransform(LPDIRECT3DDEVICE9 device);
 
 public:
+	inline void SetScale(D3DXVECTOR3 scale) {
+		m_Scale = scale;
+	}
+
 	inline void SetWorldMatrix(D3DXMATRIX wMat) {
 		m_wMatrix = wMat;
 	}
@@ -62,7 +66,6 @@ public:
 	inline void SetmatRotZ(D3DXMATRIX rot) {
 		m_matRotZ = rot;
 	}
-
 	inline void SetRotationX(float angle) {
 		m_fRotX += angle;
 	}
@@ -90,20 +93,23 @@ public:
 	}
 
 public:
+	inline D3DXMATRIX GetTranslation() {
+		return m_matTranslation;
+	}
 	inline D3DXVECTOR3 GetPosition() {
 		return m_Position;
 	}
 	inline D3DXMATRIX GetWorldMat() {
 		return m_wMatrix;
 	}
-	inline D3DXMATRIX GetRotY() {
-		return m_matRotY;
+	inline float GetRotY() {
+		return m_fRotY;
 	}
-	inline D3DXMATRIX GetRotX() {
-		return m_matRotX;
+	inline float GetRotX() {
+		return m_fRotX;
 	}
-	inline D3DXMATRIX GetRotZ() {
-		return m_matRotZ;
+	inline float GetRotZ() {
+		return m_fRotZ;
 	}
 	inline D3DXVECTOR3 GetDirection() {
 		return m_Direction;

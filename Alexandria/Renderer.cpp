@@ -42,6 +42,10 @@ bool Renderer::Init()
 	m_D3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA); //텍스쳐가 가진 알파 그대로 씀
 	m_D3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA); //텍스쳐가 가진 알파를 1 - srcalpha
 
+	//m_D3DDevice->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
+	//m_D3DDevice->SetRenderState(D3DRS_ALPHAREF, 0x00);
+	//m_D3DDevice->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATER);
+
 	m_D3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR); //멀리 있는 텍스쳐 축소
 	m_D3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR); //가까이 있는 텍스쳐 확대
 	m_D3DDevice->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR); //자연스러운 보간
@@ -56,7 +60,7 @@ bool Renderer::Init()
 	Light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.f); //주변광 (특별한 방향없이 주변을 덮고 있는 빛)
 	Light.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f); //정반사광 (한 방향으로만 반사되는 빛)
 
-	//SetLights(&Light);
+	SetLights(&Light);
 
 	return true;
 }
@@ -76,7 +80,7 @@ bool Renderer::Begin()
 	else
 		m_D3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
-	if (GetAsyncKeyState(VK_SPACE))
+	if (Input::GetInstance()->GetKeyState(VK_SPACE) == KeyState::Up)
 	{
 		m_bWireFrame ^= true;
 	}

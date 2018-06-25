@@ -54,17 +54,26 @@ void Terrain::TerrainVertexInit()
 	vertex = nullptr;
 
 	m_TerrainBuffer->GetVB()->Lock(0, 0, (void**)&vertex, 0);
+	static int in;
 
 	for (int i = 0; i < dwTerrainZ; i++) //129 * 129 만큼의 정점을 만든다.
 	{
 		for (int j = 0; j < dwTerrainX; j++)
 		{
 			int index = j + i * dwTerrainX;
+
+			//int randomIndex = (rand() % 16640);
+			if (index > in)
+				in = index;
+
 			vertex[index].vPos = D3DXVECTOR3(j, (dwPixel[index] & 0x000000ff) / 10.f, i); //불러온 비트맵의 컬러 중 b 의 값과 AND 연산해서 참인 값을 적절히 10으로 나눠서 Y값을 설정한다.
 			vertex[index].vUV = D3DXVECTOR2((20.f * j) / dwTerrainX, (20.f * i) / dwTerrainZ); //0 ~ 128 의 배열을 0 ~ 20의 uv로 바꾸기 위해 Terrain의 X,Z로 나눠준다.
 																							   //20을 곱하는 이유는 배열이 129 까지 가면 129 / 129 로 1 이 되니까 20을 곱해준다.
 		}
 	}
+
+
+
 	m_TerrainBuffer->GetVB()->Unlock();
 }
 
@@ -76,7 +85,8 @@ void Terrain::TerrainIndexInit()
 	int iTriIndex = 0;
 
 	m_TerrainBuffer->GetIB()->Lock(0, 0, (void**)&pindex, 0);
-	for (int i = 0; i < dwTerrainZ - 1; i++) //인덱스 버퍼 , 
+
+	for (int i = 0; i < dwTerrainZ - 1; i++) //인덱스 버퍼
 	{
 		for (int j = 0; j < dwTerrainX - 1; j++) //-1 을 하는 이유는 사각형을 하나 만들 때는 쓰는 정점은 두개 만들때는 3개가 필요하기 때문에 밑의 indexArr 에서 + 1을 하면 dwTerrain에 -1을 안했으면
 												 //129로 넘어가기 때문이다.
@@ -100,10 +110,12 @@ void Terrain::TerrainIndexInit()
 			//루프를 돌면서 인덱스를 높이면서 삼각형 그리는 순서를 다 설정해준다.
 			iTriIndex++;
 
-			D3DXVECTOR3 vSrc = vertex[indexArr[1]].vPos - vertex[indexArr[0]].vPos;
-			D3DXVECTOR3 vDest = vertex[indexArr[2]].vPos - vertex[indexArr[1]].vPos;
+			//외적 두 a,b 벡터에 동시에 수직하는 벡터를 구한다.
+
+			D3DXVECTOR3 vSrc = vertex[indexArr[1]].vPos - vertex[indexArr[0]].vPos; //a 벡터 구함
+			D3DXVECTOR3 vDest = vertex[indexArr[2]].vPos - vertex[indexArr[1]].vPos; //b 벡터 구함
 			D3DXVECTOR3 vNormal;
-			D3DXVec3Cross(&vNormal, &vSrc, &vDest);
+			D3DXVec3Cross(&vNormal, &vSrc, &vDest); //외적
 
 			vertex[indexArr[0]].vNormal += vNormal;
 			vertex[indexArr[1]].vNormal += vNormal;

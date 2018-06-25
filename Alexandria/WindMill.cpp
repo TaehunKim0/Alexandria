@@ -11,19 +11,23 @@ TEXVERTEX WindMillBody[] =
 
 };
 
-VERTEX WindMillWing[] =
+TEXVERTEX WindMillWing[] =
 {
-	{ D3DXVECTOR3(-0.5f, 1.f ,0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-	{ D3DXVECTOR3(0.5f, 1.f ,0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-	{ D3DXVECTOR3(1.f, 0.5f ,0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-	{ D3DXVECTOR3(1.f, -0.5f ,0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
+	{ D3DXVECTOR3(-0.5f, 2.f ,0.f), D3DXVECTOR3(0.f,0.f,0.f),D3DXVECTOR2(0.57f,0.98f) }, //0
+	{ D3DXVECTOR3(0.5f, 2.f ,0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXVECTOR2(0.72f,0.98f) }, //1
+	{ D3DXVECTOR3(2.f, 0.5f ,0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXVECTOR2(0.57f,0.98f) }, //2
+	{ D3DXVECTOR3(2.f, -0.5f ,0.f), D3DXVECTOR3(0.f,0.f,0.f),D3DXVECTOR2(0.72f,0.98f) }, //3
 
-	{ D3DXVECTOR3(0.5f, -1.f , 0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-	{ D3DXVECTOR3(-0.5f, -1.f , 0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-	{ D3DXVECTOR3(-1.f, -0.5f , 0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-	{ D3DXVECTOR3(-1.f, 0.5f, 0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
+	{ D3DXVECTOR3(0.5f, -2.f , 0.f), D3DXVECTOR3(0.f,0.f,0.f),  D3DXVECTOR2(0.72f,0.98f) }, //4
+	{ D3DXVECTOR3(-0.5f, -2.f , 0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXVECTOR2(0.57f,0.98f) }, // 5
+	{ D3DXVECTOR3(-2.f, 0.5f , 0.f), D3DXVECTOR3(0.f,0.f,0.f),  D3DXVECTOR2(0.57f,0.98f) },
+	{ D3DXVECTOR3(-2.f, -0.5f, 0.f), D3DXVECTOR3(0.f,0.f,0.f),  D3DXVECTOR2(0.72f,0.98f) },
 
-	{ D3DXVECTOR3(0.f, 0.f, 0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) }
+	{ D3DXVECTOR3(0.f, -0.5f, 0.f), D3DXVECTOR3(0.f,0.f,0.f),  D3DXVECTOR2(0.72f,0.47f) },
+	{ D3DXVECTOR3(0.f, 0.5f, 0.f), D3DXVECTOR3(0.f,0.f,0.f),   D3DXVECTOR2(0.57f,0.47f) },
+
+	{ D3DXVECTOR3(-0.5f, 0.f, 0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXVECTOR2(0.57f,0.47f) },
+	{ D3DXVECTOR3(0.5f, 0.f, 0.f), D3DXVECTOR3(0.f,0.f,0.f),  D3DXVECTOR2(0.72f,0.47f) }
 };
 
 
@@ -44,9 +48,10 @@ void WindMill::Init()
 	m_WingTrans->SetPosition(0.f, 3.f, -2.f);
 
 	m_WindMillBodyBuffer = new BufferManager();
-	m_WindMillBodyBuffer->CreateTexture(L"./Resource/windmill_512.jpg");
+	m_WindMillBodyBuffer->CreateTexture(L"./Resource/windmill_512.png");
 
 	m_WindMillWingBuffer = new BufferManager();
+	m_WindMillWingBuffer->CreateTexture(L"./Resource/windmill_512.png");
 
 	SetWindMillVertex();
 	SetWindMillIndex();
@@ -56,9 +61,9 @@ void WindMill::Init()
 
 void WindMill::Move()
 {
-	D3DXVec3TransformNormal(&Dir, &m_Transform->GetDirection(), &m_Transform->GetRotY());
-	D3DXVec3Normalize(&Dir, &Dir);
-
+	D3DXMATRIX rotY;
+	D3DXMatrixRotationY(&rotY, m_Transform->GetRotY());
+	D3DXVec3TransformNormal(&Dir, &m_Transform->GetDirection(), &rotY);
 
 	if (Input::GetInstance()->GetKeyState(VK_RIGHT) == KeyState::Pressed)
 	{
@@ -68,24 +73,36 @@ void WindMill::Move()
 	{
 		m_Transform->SetRotationY(-0.1f);
 	}
-	if (Input::GetInstance()->GetKeyState(VK_UP) == KeyState::Pressed)
+	if (Input::GetInstance()->GetKeyState(VK_DOWN) == KeyState::Pressed)
 	{
 		Translate(Dir.x, Dir.y, Dir.z);
 	}
-	if (Input::GetInstance()->GetKeyState(VK_DOWN) == KeyState::Pressed)
+	if (Input::GetInstance()->GetKeyState(VK_UP) == KeyState::Pressed)
 	{
 		Translate(-Dir.x, -Dir.y, -Dir.z);
+		//m_pMesh->Set_AnimationSet(54);
+
 	}
 }
 
 void WindMill::ShootWing()
 {
 	m_WingTrans->SetParentMatUse(false);
-	mTemp = m_Transform->GetRotY();
-	m_WingTrans->SetWorldMatrix(m_Transform->GetWorldMat());
-	m_WingTrans->SetDirection(Dir);
+	m_WingTrans->SetRotationY(m_Transform->GetRotY());
+	m_WingTrans->SetPosition(m_Transform->GetPosition().x, m_Transform->GetPosition().y, m_Transform->GetPosition().z);
 
-	m_TempPosition = m_WingTrans->GetPosition();
+	mTemp = m_Transform->GetRotY() * m_Transform->GetTranslation();
+
+	D3DXMATRIX rotY;
+	D3DXMatrixRotationY(&rotY, m_Transform->GetRotY());
+
+	m_WingTrans->SetmatRotY(rotY);
+
+	D3DXVec3TransformNormal(&mDirTemp, &m_Transform->GetDirection(), &rotY);
+	D3DXVec3Normalize(&mDirTemp, &mDirTemp);
+
+	m_WingTrans->SetDirection(mDirTemp);
+	m_WingTrans->SetWorldMatrix(mTemp);
 
 	m_bShoot = true;
 }
@@ -103,9 +120,9 @@ void WindMill::SetWindMillVertex()
 
 	//
 
-	m_WindMillWingBuffer->CreateVertexBuffer(9, sizeof(VERTEX), VertexFVF, 4);
+	m_WindMillWingBuffer->CreateVertexBuffer(12, sizeof(TEXVERTEX), TexVertexFVF, 8);
 
-	VERTEX* wvertex = nullptr;
+	TEXVERTEX* wvertex = nullptr;
 	m_WindMillWingBuffer->GetVB()->Lock(0, 0, (VOID**)&wvertex, 0);
 
 	memcpy(wvertex, WindMillWing, sizeof(WindMillWing));
@@ -138,26 +155,43 @@ void WindMill::SetWindMillIndex()
 	m_WindMillBodyBuffer->GetIB()->Unlock();
 
 	//
-	m_WindMillWingBuffer->CreateIndexBuffer(4, sizeof(INDEX));
+	m_WindMillWingBuffer->CreateIndexBuffer(8, sizeof(INDEX));
 
 	INDEX* windex = nullptr;
 
 	m_WindMillWingBuffer->GetIB()->Lock(0, 0, (VOID**)&windex, 0);
 	windex[0]._1 = 0;
 	windex[0]._2 = 1;
-	windex[0]._3 = 8;
+	windex[0]._3 = 11;
 
-	windex[1]._1 = 2;
-	windex[1]._2 = 3;
-	windex[1]._3 = 8;
+	windex[1]._1 = 0;
+	windex[1]._2 = 11;
+	windex[1]._3 = 10;
 
-	windex[2]._1 = 8;
-	windex[2]._2 = 4;
-	windex[2]._3 = 5;
+	windex[2]._1 = 10;
+	windex[2]._2 = 11;
+	windex[2]._3 = 4;
 
-	windex[3]._1 = 7;
-	windex[3]._2 = 8;
-	windex[3]._3 = 6;
+	windex[3]._1 = 10;
+	windex[3]._2 = 4;
+	windex[3]._3 = 5;
+
+	windex[4]._1 = 7;
+	windex[4]._2 = 8;
+	windex[4]._3 = 6;
+
+	windex[5]._1 = 6;
+	windex[5]._2 = 8;
+	windex[5]._3 = 9;
+
+	windex[6]._1 = 9;
+	windex[6]._2 = 2;
+	windex[6]._3 = 3;
+
+	windex[7]._1 = 8;
+	windex[7]._2 = 3;
+	windex[7]._3 = 9;
+
 
 	m_WindMillWingBuffer->GetIB()->Unlock();
 }
@@ -168,33 +202,52 @@ void WindMill::Update(float deltaTime)
 
 	if (Input::GetInstance()->GetKeyState('1') == KeyState::Up)
 	{
-		if(m_bShoot == false)
+		if (m_bShoot == false)
+		{
 			ShootWing();
+		}
 	}
 
 	if (m_bShoot)
 	{
-		m_WingTrans->SetmatRotY(mTemp);
-		m_WingTrans->Translate(m_WingTrans->GetDirection());
-
-		printf("%f %f %f\n", m_WingTrans->GetPosition().x, m_WingTrans->GetPosition().y, m_WingTrans->GetPosition().z);
-
-		printf("Direction : %f \n", m_TempPosition.z + m_WingTrans->GetDirection().z * 100);
-
-		if (m_WingTrans->GetPosition() < m_TempPosition + m_WingTrans->GetDirection() * 100)
+		if (m_bReturn == false)
 		{
-			m_bShoot = false;
+			m_WingTrans->Translate(m_WingTrans->GetDirection());
+			m_fDistance += D3DXVec3Length(&m_WingTrans->GetDirection());
 		}
+
+		if (m_fDistance > 30)
+		{
+			m_bReturn = true;
+		}
+
+		if (m_bReturn)
+		{
+			reDir = m_Transform->GetPosition() - m_WingTrans->GetPosition();
+			D3DXVec3Normalize(&reDir, &reDir);
+
+			m_WingTrans->Translate(reDir);
+
+			if (D3DXVec3Length(&D3DXVECTOR3(m_Transform->GetPosition() - m_WingTrans->GetPosition())) < 2)
+			{
+				m_WingTrans->SetParentMatUse(true);
+				m_bShoot = false;
+				m_bReturn = false;
+
+				m_WingTrans->SetPosition(0.f, 3.f, -2.f);
+				m_WingTrans->SetRotationY(0.f);
+			}
+		}
+
 	}
+
 }
 
 void WindMill::Render()
 {
 	GameObject::Render();
+	m_WindMillBodyBuffer->Render();
 
 	m_WingTrans->SetTransform(GetDevice());
 	m_WindMillWingBuffer->Render();
-
-	m_Transform->SetTransform(GetDevice());
-	m_WindMillBodyBuffer->Render();
 }

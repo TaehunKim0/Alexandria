@@ -8,6 +8,7 @@ GameObject::GameObject() :
 	, m_Parent(nullptr) , IsDestroyed(0) , m_UseBlending(0)
 	, m_Layer(0)
 {
+	m_Device->AddRef();
 }
 
 GameObject::~GameObject()

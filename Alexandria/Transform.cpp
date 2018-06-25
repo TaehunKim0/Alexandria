@@ -25,8 +25,6 @@ Transform::~Transform()
 
 void Transform::SetTransform(LPDIRECT3DDEVICE9 device)
 {
-	device->AddRef();
-
 	//Scale ¼³Á¤
 	D3DXMatrixScaling(&m_matScale, m_Scale.x, m_Scale.y, m_Scale.z);
 

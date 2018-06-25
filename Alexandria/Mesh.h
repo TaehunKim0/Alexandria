@@ -8,9 +8,9 @@ private:
 	
 	DWORD m_NumsMaterial;
 
-public:
-	Mesh();
-	virtual ~Mesh();
+private:
+	explicit Mesh();
+	~Mesh();
 
 public:
 	static Mesh* Create(std::wstring fileName, std::wstring Name);

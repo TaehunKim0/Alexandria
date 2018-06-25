@@ -61,6 +61,15 @@
     <ClInclude Include="PointLight.h">
       <Filter>Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimationCtrl.h">
+      <Filter>Node\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CHierarchyLoader.h">
+      <Filter>Node\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Dynamic_Mesh.h">
+      <Filter>Node\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gate.cpp" />
@@ -121,6 +130,15 @@
     <ClCompile Include="PointLight.cpp">
       <Filter>Game\Object</Filter>
     </ClCompile>
+    <ClCompile Include="CAnimationCtrl.cpp">
+      <Filter>Node\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CHierarchyLoader.cpp">
+      <Filter>Node\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Dynamic_Mesh.cpp">
+      <Filter>Node\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FrameWork">
@@ -143,6 +161,9 @@
     </Filter>
     <Filter Include="Game\Object">
       <UniqueIdentifier>{1e5e8dbc-f4f8-4be5-896f-eaab1a82cc4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node\Animation">
+      <UniqueIdentifier>{697e7e29-3408-477d-99be-92b52f61b568}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

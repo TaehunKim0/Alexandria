@@ -84,6 +84,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>d3d9.lib;d3dx9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -106,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -131,6 +133,9 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="BufferManager.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CAnimationCtrl.h" />
+    <ClInclude Include="CHierarchyLoader.h" />
+    <ClInclude Include="Dynamic_Mesh.h" />
     <ClInclude Include="ForestScene.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Input.h" />
@@ -153,6 +158,9 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BufferManager.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CAnimationCtrl.cpp" />
+    <ClCompile Include="CHierarchyLoader.cpp" />
+    <ClCompile Include="Dynamic_Mesh.cpp" />
     <ClCompile Include="ForestScene.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Gate.cpp" />

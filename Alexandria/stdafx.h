@@ -27,3 +27,5 @@
 #include"Scene.h"
 #include"SceneManager.h"
 #include"Camera.h"
+
+using namespace std;
